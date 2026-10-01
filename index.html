@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Bilgled, jarabe de cáscara sagrada, boldo y ruibarbo. 120 mL. Producto fitoterapéutico de uso tradicional, registro Invima PFT2013-0002065-R1.">
+<!-- Es una vista previa para revisión del cliente, no la tienda. Que no la
+     indexen los buscadores mientras los datos de etiqueta estén sin confirmar. -->
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Bilgled</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+
+<style>
+/* Layout: ficha de producto de tienda. Galería arriba en el teléfono y al
+   costado en escritorio, con el precio y el botón pegados al producto. Debajo,
+   bloques a sangre alternando blanco y verde. El arco del empaque se repite
+   como elemento gráfico. */
+:root{
+  --verde:#0A5C2B;
+  --verde-hondo:#063B1C;
+  --lima:#6FBF3F;
+  --verde-pal:#E9F4EB;
+  --papel:#FFFFFF;
+  --humo:#F3F6F2;
+  --tinta:#10180E;
+  --tinta-2:#5C665A;
+  --linea:#E0E6DE;
+  --oro:#BE9B3A;
+  --alerta:#8A5A12;
+  --alerta-fondo:#FDF3E0;
+  --display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --texto:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --verde:#5FBE7E; --verde-hondo:#0B1A0F; --lima:#8FD95F; --verde-pal:#15241A;
+    --papel:#0C120B; --humo:#131B12; --tinta:#EFF3EC; --tinta-2:#9EAA9B;
+    --linea:#26301F; --oro:#D8B45A; --alerta:#E3BC6C; --alerta-fondo:#262013;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --verde:#5FBE7E; --verde-hondo:#0B1A0F; --lima:#8FD95F; --verde-pal:#15241A;
+  --papel:#0C120B; --humo:#131B12; --tinta:#EFF3EC; --tinta-2:#9EAA9B;
+  --linea:#26301F; --oro:#D8B45A; --alerta:#E3BC6C; --alerta-fondo:#262013;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:var(--texto); font-size:16px; line-height:1.6;
+  margin:0; padding-bottom:86px; -webkit-font-smoothing:antialiased;
+}
+@media (min-width:900px){ body{padding-bottom:0} }
+.envoltura{max-width:1180px; margin-inline:auto; padding-inline:20px}
+h1,h2,h3{font-family:var(--display); font-weight:800; letter-spacing:-.025em; text-wrap:balance; margin:0; line-height:1.05}
+p{margin:0}
+a{color:inherit}
+img{display:block}
+
+.rotulo{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--verde)}
+
+/* ── cintillo + barra ─────────────────────────────────────────── */
+.cintillo{background:var(--verde-hondo); color:#EAF4EC; font-size:12.5px; font-weight:600; text-align:center; padding:9px 20px; letter-spacing:.01em}
+.barra{position:sticky; top:env(safe-area-inset-top,0px); z-index:30; background:var(--papel); border-bottom:1px solid var(--linea)}
+.barra .envoltura{display:flex; align-items:center; justify-content:space-between; gap:14px; padding-block:13px}
+.logo{font-family:var(--display); font-weight:800; font-size:19px; letter-spacing:-.02em; color:var(--verde)}
+.logo small{display:block; font-family:var(--texto); font-weight:500; font-size:10.5px; letter-spacing:.02em; color:var(--tinta-2); margin-top:1px}
+.barra .reg{font-size:11px; color:var(--tinta-2); text-align:right; line-height:1.3; font-variant-numeric:tabular-nums}
+
+/* ── ficha ────────────────────────────────────────────────────── */
+.ficha{padding-block:24px 40px}
+.ficha .caja{display:grid; gap:26px}
+@media (min-width:900px){ .ficha{padding-block:40px 60px} .ficha .caja{grid-template-columns:1fr 1fr; gap:56px; align-items:start} }
+
+/* Los hijos de un grid traen min-width:auto, así que la foto de 705px de ancho
+   intrínseco empujaba la columna entera y la página se iba de lado en el
+   teléfono. El min-width:0 es lo que les permite encogerse. */
+.ficha .caja > *{min-width:0}
+.galeria{display:grid; gap:12px; min-width:0}
+.galeria .principal{
+  position:relative; background:var(--humo); border-radius:20px; overflow:hidden;
+  aspect-ratio:1/1; display:grid; place-items:center; padding:18px;
+  min-width:0; width:100%;
+}
+/* Posición absoluta a propósito: con la caja en aspect-ratio, un max-height en
+   porcentaje no llega a limitar nada y la foto se salía por abajo. Con inset
+   las dos medidas quedan definidas y `contain` sí encuadra. */
+.galeria .principal img{position:absolute; inset:18px; width:calc(100% - 36px); height:calc(100% - 36px); object-fit:contain}
+.galeria .principal img.llena{inset:0; width:100%; height:100%; object-fit:cover}
+.miniaturas{display:flex; gap:10px; min-width:0}
+.mini{
+  flex:1 1 0; min-width:0; aspect-ratio:1/1; border-radius:12px; overflow:hidden; padding:0;
+  border:2px solid var(--linea); background:var(--humo); cursor:pointer;
+}
+.mini img{width:100%; height:100%; object-fit:cover}
+.mini[aria-current="true"]{border-color:var(--verde)}
+
+.ruta{font-size:12.5px; color:var(--tinta-2); margin-bottom:12px}
+.ficha h1{font-size:clamp(34px,9vw,52px); color:var(--tinta)}
+.ficha .tipo{display:inline-block; margin-top:12px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--verde); background:var(--verde-pal); border-radius:999px; padding:5px 12px}
+.ficha .resumen{margin-top:16px; font-size:17.5px; line-height:1.5; color:var(--tinta-2); max-width:46ch}
+
+.valoracion{display:flex; align-items:center; gap:9px; margin-top:14px; font-size:13.5px; color:var(--tinta-2)}
+.estrellas{display:flex; gap:2px}
+.estrellas svg{width:15px; height:15px; color:var(--linea)}
+
+.precio-caja{margin-top:22px; padding-top:20px; border-top:1px solid var(--linea)}
+.precio-fila{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+.precio{font-family:var(--display); font-weight:800; font-size:40px; letter-spacing:-.03em; color:var(--tinta); font-variant-numeric:tabular-nums}
+.tachado{font-size:17px; color:var(--tinta-2); text-decoration:line-through}
+.etiqueta-ahorro{font-size:12.5px; font-weight:700; color:var(--verde); background:var(--verde-pal); border-radius:999px; padding:4px 10px}
+
+.opciones{display:grid; gap:9px; margin-top:18px}
+.opcion{
+  display:grid; grid-template-columns:20px 1fr auto; gap:13px; align-items:center;
+  border:1.5px solid var(--linea); border-radius:14px; padding:14px 16px;
+  background:var(--papel); cursor:pointer; text-align:left; width:100%;
+  font-family:var(--texto); font-size:15.5px; color:var(--tinta);
+  transition:border-color .16s ease, background .16s ease;
+}
+.opcion:hover{border-color:var(--verde)}
+.opcion[aria-checked="true"]{border-color:var(--verde); background:var(--verde-pal)}
+.marca-radio{width:19px; height:19px; border-radius:50%; border:2px solid var(--linea); display:grid; place-items:center}
+.opcion[aria-checked="true"] .marca-radio{border-color:var(--verde)}
+.marca-radio i{width:9px; height:9px; border-radius:50%; background:var(--verde); transform:scale(0); transition:transform .14s ease}
+.opcion[aria-checked="true"] .marca-radio i{transform:scale(1)}
+.opcion .qty{font-weight:700}
+.opcion .sub{display:block; font-size:12.5px; color:var(--tinta-2); font-weight:400; margin-top:1px}
+.opcion .val{font-weight:700; font-variant-numeric:tabular-nums}
+.opcion .val s{display:block; font-weight:400; font-size:12.5px; color:var(--tinta-2)}
+
+.boton{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  min-height:54px; padding:0 28px; border-radius:14px; border:0;
+  background:var(--verde); color:#fff; font-family:var(--texto);
+  font-weight:700; font-size:16.5px; text-decoration:none; cursor:pointer; width:100%;
+  transition:filter .16s ease, transform .16s ease;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .boton{color:#06120A} }
+:root[data-theme="dark"] .boton{color:#06120A}
+.boton:hover{filter:brightness(1.08)}
+.boton:active{transform:translateY(1px)}
+.boton.fantasma{background:transparent; color:var(--verde); border:1.5px solid var(--verde)}
+.bajo-boton{margin-top:10px; font-size:13px; color:var(--tinta-2); text-align:center}
+
+.puntos{list-style:none; margin:22px 0 0; padding:0; display:grid; gap:11px}
+.puntos li{display:flex; gap:11px; align-items:flex-start; font-size:15.5px}
+.puntos svg{width:19px; height:19px; flex:none; margin-top:2px; color:var(--verde)}
+
+.plegables{margin-top:22px; border-top:1px solid var(--linea)}
+.plegables details{border-bottom:1px solid var(--linea)}
+.plegables summary{cursor:pointer; list-style:none; padding:15px 30px 15px 0; position:relative; font-weight:600; font-size:15px}
+.plegables summary::-webkit-details-marker{display:none}
+.plegables summary::after{content:""; position:absolute; right:6px; top:50%; width:9px; height:9px; border-right:2px solid var(--verde); border-bottom:2px solid var(--verde); transform:translateY(-70%) rotate(45deg); transition:transform .18s ease}
+.plegables details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.plegables .cuerpo{padding:0 0 16px; color:var(--tinta-2); font-size:14.5px; display:grid; gap:9px}
+
+/* ── franja de garantías ──────────────────────────────────────── */
+.garantias{border-block:1px solid var(--linea); background:var(--humo)}
+.garantias .envoltura{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; padding-block:26px}
+@media (min-width:760px){ .garantias .envoltura{grid-template-columns:repeat(4,1fr)} }
+.garantia{display:grid; gap:5px}
+.garantia svg{width:22px; height:22px; color:var(--verde)}
+.garantia b{font-size:14.5px; font-weight:700}
+.garantia span{font-size:13px; color:var(--tinta-2); line-height:1.45}
+
+/* ── bloques ──────────────────────────────────────────────────── */
+section{padding-block:56px}
+section.verde{background:var(--verde-hondo); color:#EAF4EC}
+section.verde .rotulo{color:var(--lima)}
+section.verde h2{color:#fff}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) section.verde h2{color:var(--tinta)} :root:not([data-theme="light"]) section.verde{color:var(--tinta-2)} }
+:root[data-theme="dark"] section.verde h2{color:var(--tinta)}
+:root[data-theme="dark"] section.verde{color:var(--tinta-2)}
+section.humo{background:var(--humo)}
+.cabeza{display:grid; gap:12px; margin-bottom:30px; max-width:46ch}
+.cabeza h2{font-size:clamp(30px,7vw,44px)}
+.cabeza p{color:var(--tinta-2); font-size:17px}
+section.verde .cabeza p{color:#B9D4BF}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) section.verde .cabeza p{color:var(--tinta-2)} }
+:root[data-theme="dark"] section.verde .cabeza p{color:var(--tinta-2)}
+
+.promesa{display:grid; gap:28px}
+@media (min-width:900px){ .promesa{grid-template-columns:1fr 1fr; gap:56px; align-items:center} }
+.promesa figure{margin:0; border-radius:20px; overflow:hidden}
+.promesa img{width:100%; height:100%; max-height:380px; object-fit:cover}
+.pasos{list-style:none; margin:0; padding:0; counter-reset:p; display:grid; gap:18px}
+.pasos li{counter-increment:p; display:grid; grid-template-columns:34px 1fr; gap:15px; align-items:start}
+.pasos li::before{
+  content:counter(p); width:34px; height:34px; border-radius:50%;
+  background:var(--lima); color:#06230E; display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:15px;
+}
+.pasos b{display:block; font-size:17px; font-weight:700; margin-bottom:3px}
+.pasos span{font-size:15px; color:#B9D4BF; line-height:1.55}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pasos span{color:var(--tinta-2)} }
+:root[data-theme="dark"] .pasos span{color:var(--tinta-2)}
+
+/* ingredientes */
+.ingredientes{display:grid; gap:16px}
+@media (min-width:820px){ .ingredientes{grid-template-columns:repeat(3,1fr)} }
+.ingrediente{border:1px solid var(--linea); border-radius:20px; overflow:hidden; background:var(--papel); display:grid; grid-template-rows:auto 1fr}
+.ingrediente img{width:100%; height:156px; object-fit:cover}
+.ingrediente .texto{padding:20px; display:grid; gap:7px; align-content:start}
+.ingrediente h3{font-size:22px; font-weight:700; color:var(--tinta)}
+.ingrediente .latin{font-size:13px; font-style:italic; color:var(--verde); font-weight:600}
+.ingrediente p{font-size:14.5px; color:var(--tinta-2); line-height:1.6}
+
+/* seguridad */
+.seguridad{display:grid; gap:18px}
+@media (min-width:820px){ .seguridad{grid-template-columns:1fr 1fr; gap:34px} }
+.aviso{background:var(--alerta-fondo); border:1px solid color-mix(in srgb,var(--alerta) 28%,transparent); border-radius:18px; padding:22px}
+.aviso h3{font-size:19px; font-weight:700; color:var(--alerta); margin-bottom:10px}
+.aviso ul{margin:0; padding-left:18px; display:grid; gap:7px}
+.aviso li{font-size:14.5px; color:var(--alerta); line-height:1.5}
+.ficha-tecnica{border:1px solid var(--linea); border-radius:18px; overflow:hidden}
+.ficha-tecnica div{display:grid; grid-template-columns:auto 1fr; gap:14px; padding:13px 18px; border-bottom:1px solid var(--linea); font-size:14.5px}
+.ficha-tecnica div:last-child{border-bottom:0}
+.ficha-tecnica dt{color:var(--tinta-2)}
+.ficha-tecnica dd{margin:0; font-weight:600; text-align:right}
+
+/* cierre */
+.cierre{display:grid; gap:24px; align-items:center}
+@media (min-width:820px){ .cierre{grid-template-columns:1fr auto; gap:48px} }
+.cierre .precio{font-size:44px}
+
+/* barra fija */
+.barra-compra{
+  position:fixed; left:0; right:0; bottom:0; z-index:40;
+  background:var(--papel); border-top:1px solid var(--linea);
+  padding:11px 20px calc(11px + env(safe-area-inset-bottom,0px));
+  display:flex; align-items:center; gap:13px;
+  transform:translateY(130%); transition:transform .26s cubic-bezier(.22,1,.36,1);
+}
+.barra-compra.visible{transform:none}
+.barra-compra .p{font-family:var(--display); font-weight:800; font-size:21px; flex:none; font-variant-numeric:tabular-nums}
+.barra-compra .boton{flex:1; min-height:48px; padding-inline:16px; font-size:15.5px}
+@media (min-width:900px){ .barra-compra{display:none} }
+
+/* pie */
+.pie{background:var(--verde-hondo); color:#C9DCCE; padding-block:40px 32px}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pie{color:var(--tinta-2)} }
+:root[data-theme="dark"] .pie{color:var(--tinta-2)}
+.pie .cols{display:grid; gap:26px}
+@media (min-width:760px){ .pie .cols{grid-template-columns:1.3fr 1fr} }
+.pie .logo{color:#fff}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pie .logo{color:var(--verde)} }
+:root[data-theme="dark"] .pie .logo{color:var(--verde)}
+.pie .logo small{color:#9FBCA6}
+.pie h4{font-family:var(--display); font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin:0 0 12px}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pie h4{color:var(--tinta)} }
+:root[data-theme="dark"] .pie h4{color:var(--tinta)}
+.pie ul{list-style:none; margin:0; padding:0; display:grid; gap:7px; font-size:13.5px; line-height:1.5}
+.pie .fino{margin-top:28px; padding-top:18px; border-top:1px solid rgba(255,255,255,.14); font-size:12px; opacity:.72; display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:space-between}
+
+:focus-visible{outline:2.5px solid var(--lima); outline-offset:3px; border-radius:6px}
+@media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important} }
+</style>
+</head>
+<body>
+
+
+<div class="cintillo">Envíos a todo Colombia · Compra en la tienda oficial de Barber</div>
+
+<header class="barra">
+  <div class="envoltura">
+    <span class="logo">BARBER<small>Siempre lo mejor, siempre natural</small></span>
+    <span class="reg">Registro Invima<br>PFT2013-0002065-R1</span>
+  </div>
+</header>
+
+<main>
+  <!-- ── FICHA DE PRODUCTO ───────────────────────────────────── -->
+  <section class="ficha">
+    <div class="envoltura caja">
+
+      <div class="galeria">
+        <div class="principal">
+          <img id="foto-grande" src="img/producto.webp" alt="Caja y frasco de Bilgled, jarabe de 120 mL" width="705" height="900">
+        </div>
+        <div class="miniaturas" role="tablist" aria-label="Fotos del producto">
+          <button type="button" class="mini" aria-current="true" data-src="img/producto.webp" data-llena="0" aria-label="Caja y frasco"><img src="img/producto.webp" alt="" width="705" height="900"></button>
+          <button type="button" class="mini" aria-current="false" data-src="img/estudio.jpg" data-llena="1" aria-label="El frasco de cerca"><img src="img/estudio.jpg" alt="" width="318" height="511"></button>
+          <button type="button" class="mini" aria-current="false" data-src="img/ambiente.jpg" data-llena="1" aria-label="El producto sobre piedra"><img src="img/ambiente.jpg" alt="" width="724" height="589"></button>
+          <button type="button" class="mini" aria-current="false" data-src="img/corteza.jpg" data-llena="1" aria-label="Cortezas"><img src="img/corteza.jpg" alt="" width="505" height="308"></button>
+        </div>
+      </div>
+
+      <div>
+        <p class="ruta">Inicio · Digestivo · Bilgled</p>
+        <h1>Bilgled</h1>
+        <span class="tipo">Fitoterapéutico · uso tradicional</span>
+        <p class="resumen">Jarabe de cáscara sagrada, boldo y ruibarbo. Una cucharada al día cuando el ritmo se desacomoda.</p>
+
+        <div class="valoracion">
+          <span class="estrellas" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          </span>
+          Sin valoraciones todavía — sé el primero
+        </div>
+
+        <div class="precio-caja">
+          <div class="precio-fila">
+            <span class="precio" id="p-precio">$17.000</span>
+            <s class="tachado" id="p-tachado" hidden>$0</s>
+            <span class="etiqueta-ahorro" id="p-ahorro" hidden>—</span>
+          </div>
+
+          <div class="opciones" role="radiogroup" aria-label="Presentación">
+            <button type="button" class="opcion" role="radio" aria-checked="true"
+              data-n="1" data-precio="17000"
+              data-url="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo/">
+              <span class="marca-radio" aria-hidden="true"><i></i></span>
+              <span><span class="qty">1 frasco</span><span class="sub">120 mL · para probarlo</span></span>
+              <span class="val">$17.000</span>
+            </button>
+            <button type="button" class="opcion" role="radio" aria-checked="false"
+              data-n="2" data-precio="30600"
+              data-url="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo-x2/">
+              <span class="marca-radio" aria-hidden="true"><i></i></span>
+              <span><span class="qty">2 frascos</span><span class="sub">uno en casa, uno de repuesto</span></span>
+              <span class="val">$30.600<s>$34.000</s></span>
+            </button>
+            <button type="button" class="opcion" role="radio" aria-checked="false"
+              data-n="3" data-precio="43350"
+              data-url="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo-x3/">
+              <span class="marca-radio" aria-hidden="true"><i></i></span>
+              <span><span class="qty">3 frascos</span><span class="sub">el que más ahorra</span></span>
+              <span class="val">$43.350<s>$51.000</s></span>
+            </button>
+          </div>
+
+          <a class="boton" id="p-boton" style="margin-top:16px"
+             href="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo/"
+             target="_blank" rel="noopener">Agregar al carrito</a>
+          <p class="bajo-boton">El pago se completa en barber.com.co</p>
+        </div>
+
+        <ul class="puntos">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tres plantas y nada más: cáscara sagrada, boldo y ruibarbo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Una cucharada de 5 mL al día, sin fórmula médica</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>El frasco rinde unas 24 tomas</li>
+        </ul>
+
+        <div class="plegables">
+          <details>
+            <summary>Envíos y entregas</summary>
+            <div class="cuerpo"><p>Barber despacha a todo el país desde su tienda en línea. El costo y el tiempo se calculan en el carrito según la ciudad.</p></div>
+          </details>
+          <details>
+            <summary>Registro sanitario</summary>
+            <div class="cuerpo"><p>Invima PFT2013-0002065-R1. Producto fitoterapéutico de uso tradicional, de venta libre.</p></div>
+          </details>
+          <details>
+            <summary>Quién lo fabrica</summary>
+            <div class="cuerpo"><p>Bilgled es de un laboratorio aliado. Barber lo distribuye y lo vende en su tienda oficial.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GARANTÍAS ───────────────────────────────────────────── -->
+  <div class="garantias">
+    <div class="envoltura">
+      <div class="garantia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/></svg>
+        <b>Registro vigente</b><span>Invima PFT2013-0002065-R1</span>
+      </div>
+      <div class="garantia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        <b>Envíos a todo el país</b><span>Despacha Barber</span>
+      </div>
+      <div class="garantia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20c5-2 7-6 7-11-3 0-5 1-7 3-2-2-4-3-7-3 0 5 2 9 7 11z"/></svg>
+        <b>Origen vegetal</b><span>Tres plantas, sin más</span>
+      </div>
+      <div class="garantia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h18M6 6h12a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>
+        <b>Pago en la tienda oficial</b><span>No a un revendedor</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CUÁNDO SE USA ───────────────────────────────────────── -->
+  <section class="verde">
+    <div class="envoltura">
+      <div class="cabeza">
+        <span class="rotulo">Para qué sirve</span>
+        <h2>Cuando el ritmo se desacomoda</h2>
+        <p>Un viaje, un turno distinto, otra comida. A veces el cuerpo no vuelve solo a su horario y hace falta un empujón corto.</p>
+      </div>
+      <div class="promesa">
+        <ol class="pasos">
+          <li><div><b>Una cucharada al día</b><span>5 mL, para adultos y mayores de 12 años. No hay que medir nada más.</span></div></li>
+          <li><div><b>Por tramos cortos</b><span>Es un laxante de origen vegetal, pensado para unos días, no para todos los días.</span></div></li>
+          <li><div><b>Si no vuelve, consulta al médico</b><span>El paso siguiente nunca es otra cucharada.</span></div></li>
+        </ol>
+        <figure><img src="img/ambiente.jpg" alt="Frasco y caja de Bilgled sobre piedra, entre hojas y trozos de corteza" width="724" height="589" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INGREDIENTES ────────────────────────────────────────── -->
+  <section>
+    <div class="envoltura">
+      <div class="cabeza">
+        <span class="rotulo">La fórmula</span>
+        <h2>Tres plantas con historia</h2>
+        <p>Las tres se usan hace siglos en preparaciones digestivas. Eso es lo que ampara un registro de uso tradicional.</p>
+      </div>
+      <div class="ingredientes">
+        <article class="ingrediente">
+          <img src="img/corteza.jpg" alt="Trozos de corteza seca" width="505" height="308" loading="lazy">
+          <div class="texto">
+            <h3>Cáscara sagrada</h3>
+            <span class="latin">Rhamnus purshiana</span>
+            <p>Corteza de un arbusto del noroeste americano. Los pueblos originarios la tomaban en infusión y de ahí pasó a las boticas del siglo XIX, con el nombre que todavía lleva. Es la que define el carácter laxante de la fórmula.</p>
+          </div>
+        </article>
+        <article class="ingrediente">
+          <img src="img/hojas.jpg" alt="Hojas verdes" width="348" height="200" loading="lazy">
+          <div class="texto">
+            <h3>Boldo</h3>
+            <span class="latin">Peumus boldus</span>
+            <p>Árbol chileno de hoja dura y olor fuerte. En toda Suramérica la hoja de boldo es lo que se toma después del almuerzo pesado, por pura costumbre heredada.</p>
+          </div>
+        </article>
+        <article class="ingrediente">
+          <img src="img/estudio.jpg" alt="El frasco de Bilgled de cerca" width="318" height="511" loading="lazy">
+          <div class="texto">
+            <h3>Ruibarbo</h3>
+            <span class="latin">Rheum officinale</span>
+            <p>La raíz, no el tallo de las tartas. Lleva más de dos mil años en la farmacopea china y llegó a Europa por la ruta de la seda, cuando valía más que muchas especias.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SEGURIDAD ───────────────────────────────────────────── -->
+  <section class="humo">
+    <div class="envoltura">
+      <div class="cabeza">
+        <span class="rotulo">Antes de comprar</span>
+        <h2>Lo que hay que saber</h2>
+      </div>
+      <div class="seguridad">
+        <div class="aviso">
+          <h3>No lo tomes si…</h3>
+          <ul>
+            <li>Estás en embarazo o lactancia</li>
+            <li>Tienes menos de 12 años</li>
+            <li>Hay dolor abdominal de causa desconocida</li>
+            <li>Tienes obstrucción intestinal o enfermedad inflamatoria del intestino</li>
+          </ul>
+        </div>
+        <dl class="ficha-tecnica">
+          <div><dt>Presentación</dt><dd>Jarabe, 120 mL</dd></div>
+          <div><dt>Dosis</dt><dd>1 cucharada (5 mL) al día</dd></div>
+          <div><dt>Edad</dt><dd>Desde 12 años</dd></div>
+          <div><dt>Condición de venta</dt><dd>Venta libre</dd></div>
+          <div><dt>Registro</dt><dd>PFT2013-0002065-R1</dd></div>
+          <div><dt>Categoría</dt><dd>Fitoterapéutico tradicional</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PREGUNTAS ───────────────────────────────────────────── -->
+  <section>
+    <div class="envoltura">
+      <div class="cabeza">
+        <span class="rotulo">Preguntas frecuentes</span>
+        <h2>Lo que preguntan antes de comprar</h2>
+      </div>
+      <div class="plegables" style="border-top:1px solid var(--linea)">
+        <details open>
+          <summary>¿A qué sabe?</summary>
+          <div class="cuerpo"><p>Es un jarabe de hierbas: dulce al principio y amargo al final, por el boldo y la corteza. Se toma rápido y se pasa con agua.</p></div>
+        </details>
+        <details>
+          <summary>¿Cuánto me dura un frasco?</summary>
+          <div class="cuerpo"><p>Son 120 mL y la toma es de 5 mL, así que salen unas 24 tomas. Como se usa por tramos cortos, un frasco alcanza para varias veces.</p></div>
+        </details>
+        <details>
+          <summary>¿Lo puedo tomar con otro medicamento?</summary>
+          <div class="cuerpo"><p>Esa la responde quien te formuló el otro medicamento, no una página web. Llévale la caja a tu médico o al farmaceuta.</p></div>
+        </details>
+        <details>
+          <summary>¿Necesito fórmula médica?</summary>
+          <div class="cuerpo"><p>No. Es de venta libre, con registro sanitario Invima PFT2013-0002065-R1.</p></div>
+        </details>
+        <details>
+          <summary>¿Por qué hay tres frascos en combo si se toma por tramos cortos?</summary>
+          <div class="cuerpo"><p>Para tener en casa y no quedarse sin, no para tomarlos seguidos. El ahorro es por volumen, no una invitación a usarlo más tiempo.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CIERRE ──────────────────────────────────────────────── -->
+  <section class="humo" id="comprar">
+    <div class="envoltura cierre">
+      <div>
+        <h2 style="font-size:clamp(28px,6.5vw,38px)">Bilgled, 120 mL</h2>
+        <p style="color:var(--tinta-2); margin-top:10px; max-width:42ch">Cáscara sagrada, boldo y ruibarbo. Una cucharada al día, por tramos cortos.</p>
+        <p class="precio" id="c-precio" style="margin-top:16px">$17.000</p>
+      </div>
+      <div style="min-width:min(100%,300px)">
+        <a class="boton" id="c-boton" href="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo/" target="_blank" rel="noopener">Agregar al carrito</a>
+        <a class="boton fantasma" href="#" style="margin-top:10px" id="c-volver">Ver las presentaciones</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <div class="cols">
+      <div>
+        <span class="logo">BARBER<small>Siempre lo mejor, siempre natural</small></span>
+        <p style="margin-top:14px; font-size:13.5px; max-width:38ch">Bilgled es un producto de un laboratorio aliado, distribuido por Barber. Se compra en barber.com.co.</p>
+      </div>
+      <div>
+        <h4>Información legal</h4>
+        <ul>
+          <li>Producto fitoterapéutico de uso tradicional (PFT)</li>
+          <li>No exceder su consumo</li>
+          <li>Registro sanitario No. PFT2013-0002065-R1</li>
+          <li>Leer Uso tradicional, contraindicaciones y advertencias en la etiqueta</li>
+          <li>Si los síntomas persisten, consultar al médico</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fino">
+      <span>barber.com.co · Pronaturales Barber</span>
+      <span>Esta página no reemplaza la consulta con un profesional de la salud.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="barra-compra" id="barra-compra">
+  <span class="p" id="b-precio">$17.000</span>
+  <a class="boton" id="b-boton" href="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo/" target="_blank" rel="noopener">Agregar</a>
+</div>
+
+<script>
+(function(){
+  var UNIT = 17000;
+  function pesos(n){ return "$" + n.toLocaleString("es-CO"); }
+
+  /* ── galería ── */
+  var grande = document.getElementById("foto-grande");
+  var minis = Array.prototype.slice.call(document.querySelectorAll(".mini"));
+  minis.forEach(function(m){
+    m.addEventListener("click", function(){
+      minis.forEach(function(o){ o.setAttribute("aria-current", String(o === m)); });
+      grande.src = m.dataset.src;
+      grande.alt = m.getAttribute("aria-label") || "";
+      grande.classList.toggle("llena", m.dataset.llena === "1");
+    });
+  });
+
+  /* ── presentación ── */
+  var opciones = Array.prototype.slice.call(document.querySelectorAll(".opcion"));
+  var pPrecio = document.getElementById("p-precio");
+  var pTachado = document.getElementById("p-tachado");
+  var pAhorro = document.getElementById("p-ahorro");
+  var botones = ["p-boton","c-boton","b-boton"].map(function(id){ return document.getElementById(id); });
+  var cPrecio = document.getElementById("c-precio");
+  var bPrecio = document.getElementById("b-precio");
+
+  function elegir(btn){
+    opciones.forEach(function(o){ o.setAttribute("aria-checked", String(o === btn)); });
+    var n = parseInt(btn.dataset.n, 10);
+    var precio = parseInt(btn.dataset.precio, 10);
+    var lista = UNIT * n;
+    var dif = lista - precio;
+    var v = pesos(precio);
+
+    pPrecio.textContent = v;
+    cPrecio.textContent = v;
+    bPrecio.textContent = v;
+    pTachado.hidden = dif <= 0;
+    pTachado.textContent = pesos(lista);
+    pAhorro.hidden = dif <= 0;
+    pAhorro.textContent = "Ahorras " + pesos(dif);
+    botones.forEach(function(b){ if (b) b.href = btn.dataset.url; });
+  }
+
+  opciones.forEach(function(btn){
+    btn.addEventListener("click", function(){ elegir(btn); });
+    btn.addEventListener("keydown", function(e){
+      if (["ArrowRight","ArrowLeft","ArrowDown","ArrowUp"].indexOf(e.key) < 0) return;
+      e.preventDefault();
+      var i = opciones.indexOf(btn);
+      var paso = (e.key === "ArrowRight" || e.key === "ArrowDown") ? 1 : -1;
+      var sig = opciones[(i + paso + opciones.length) % opciones.length];
+      sig.focus(); elegir(sig);
+    });
+  });
+
+  document.getElementById("c-volver").addEventListener("click", function(e){
+    e.preventDefault();
+    document.querySelector(".precio-caja").scrollIntoView({behavior:"smooth", block:"center"});
+  });
+
+  /* ── barra fija ── */
+  var barra = document.getElementById("barra-compra");
+  var ficha = document.querySelector(".ficha");
+  var cierre = document.getElementById("comprar");
+  function revisar(){
+    var paso = window.scrollY > ficha.offsetHeight * 0.75;
+    var c = cierre.getBoundingClientRect();
+    var sobreCierre = c.top < window.innerHeight && c.bottom > 0;
+    barra.classList.toggle("visible", paso && !sobreCierre);
+  }
+  window.addEventListener("scroll", revisar, {passive:true});
+  window.addEventListener("resize", revisar);
+  revisar();
+})();
+</script>
+
+</body>
+</html>
