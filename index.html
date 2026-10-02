@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Bilgled, jarabe de cáscara sagrada, boldo y ruibarbo. 120 mL. Producto fitoterapéutico de uso tradicional, registro Invima PFT2013-0002065-R1.">
-<!-- Es una vista previa para revisión del cliente, no la tienda. Que no la
-     indexen los buscadores mientras los datos de etiqueta estén sin confirmar. -->
 <meta name="robots" content="noindex,nofollow">
+<!-- La barra del navegador acompaña el fondo de la página en cada tema. -->
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C120B" media="(prefers-color-scheme: dark)">
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0}
@@ -57,6 +58,20 @@ img{max-width:100%}
 }
 
 *{box-sizing:border-box}
+html{-webkit-tap-highlight-color:rgba(10,92,43,.15)}
+/* El retardo de 300ms al tocar se nota en los botones de compra. */
+a,button,summary,.opcion{touch-action:manipulation}
+/* El ancla caía debajo de la barra fija de arriba. */
+[id]{scroll-margin-top:92px}
+.saltar{
+  position:absolute; left:-9999px; top:0; z-index:60;
+  background:var(--verde); color:#fff; padding:12px 18px; border-radius:0 0 10px 0;
+  font-weight:700; text-decoration:none;
+}
+.saltar:focus{left:0}
+.titulo-pie{font-family:var(--display); font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin:0 0 12px}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .titulo-pie{color:var(--tinta)} }
+:root[data-theme="dark"] .titulo-pie{color:var(--tinta)}
 body{
   background:var(--papel); color:var(--tinta);
   font-family:var(--texto); font-size:16px; line-height:1.6;
@@ -105,7 +120,7 @@ img{display:block}
   border:2px solid var(--linea); background:var(--humo); cursor:pointer;
 }
 .mini img{width:100%; height:100%; object-fit:cover}
-.mini[aria-current="true"]{border-color:var(--verde)}
+.mini[aria-pressed="true"]{border-color:var(--verde)}
 
 .ruta{font-size:12.5px; color:var(--tinta-2); margin-bottom:12px}
 .ficha h1{font-size:clamp(34px,9vw,52px); color:var(--tinta)}
@@ -259,9 +274,6 @@ section.verde .cabeza p{color:#B9D4BF}
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pie .logo{color:var(--verde)} }
 :root[data-theme="dark"] .pie .logo{color:var(--verde)}
 .pie .logo small{color:#9FBCA6}
-.pie h4{font-family:var(--display); font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin:0 0 12px}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .pie h4{color:var(--tinta)} }
-:root[data-theme="dark"] .pie h4{color:var(--tinta)}
 .pie ul{list-style:none; margin:0; padding:0; display:grid; gap:7px; font-size:13.5px; line-height:1.5}
 .pie .fino{margin-top:28px; padding-top:18px; border-top:1px solid rgba(255,255,255,.14); font-size:12px; opacity:.72; display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:space-between}
 
@@ -272,35 +284,36 @@ section.verde .cabeza p{color:#B9D4BF}
 <body>
 
 
+<a class="saltar" href="#ficha">Ir al contenido</a>
 <div class="cintillo">Envíos a todo Colombia · Compra en la tienda oficial de Barber</div>
 
 <header class="barra">
   <div class="envoltura">
-    <span class="logo">BARBER<small>Siempre lo mejor, siempre natural</small></span>
+    <span class="logo" translate="no">BARBER<small>Siempre lo mejor, siempre natural</small></span>
     <span class="reg">Registro Invima<br>PFT2013-0002065-R1</span>
   </div>
 </header>
 
 <main>
   <!-- ── FICHA DE PRODUCTO ───────────────────────────────────── -->
-  <section class="ficha">
+  <section class="ficha" id="ficha" tabindex="-1">
     <div class="envoltura caja">
 
       <div class="galeria">
         <div class="principal">
           <img id="foto-grande" src="img/producto.webp" alt="Caja y frasco de Bilgled, jarabe de 120 mL" width="705" height="900">
         </div>
-        <div class="miniaturas" role="tablist" aria-label="Fotos del producto">
-          <button type="button" class="mini" aria-current="true" data-src="img/producto.webp" data-llena="0" aria-label="Caja y frasco"><img src="img/producto.webp" alt="" width="705" height="900"></button>
-          <button type="button" class="mini" aria-current="false" data-src="img/estudio.jpg" data-llena="1" aria-label="El frasco de cerca"><img src="img/estudio.jpg" alt="" width="318" height="511"></button>
-          <button type="button" class="mini" aria-current="false" data-src="img/ambiente.jpg" data-llena="1" aria-label="El producto sobre piedra"><img src="img/ambiente.jpg" alt="" width="724" height="589"></button>
-          <button type="button" class="mini" aria-current="false" data-src="img/corteza.jpg" data-llena="1" aria-label="Cortezas"><img src="img/corteza.jpg" alt="" width="505" height="308"></button>
+        <div class="miniaturas" role="group" aria-label="Fotos del producto">
+          <button type="button" class="mini" aria-pressed="true" data-src="img/producto.webp" data-llena="0" aria-label="Caja y frasco"><img src="img/producto.webp" alt="" width="705" height="900"></button>
+          <button type="button" class="mini" aria-pressed="false" data-src="img/estudio.jpg" data-llena="1" aria-label="El frasco de cerca"><img src="img/estudio.jpg" alt="" width="318" height="511"></button>
+          <button type="button" class="mini" aria-pressed="false" data-src="img/ambiente.jpg" data-llena="1" aria-label="El producto sobre piedra"><img src="img/ambiente.jpg" alt="" width="724" height="589"></button>
+          <button type="button" class="mini" aria-pressed="false" data-src="img/corteza.jpg" data-llena="1" aria-label="Cortezas"><img src="img/corteza.jpg" alt="" width="505" height="308"></button>
         </div>
       </div>
 
       <div>
         <p class="ruta">Inicio · Digestivo · Bilgled</p>
-        <h1>Bilgled</h1>
+        <h1 translate="no">Bilgled</h1>
         <span class="tipo">Fitoterapéutico · uso tradicional</span>
         <p class="resumen">Jarabe de cáscara sagrada, boldo y ruibarbo. Una cucharada al día cuando el ritmo se desacomoda.</p>
 
@@ -316,7 +329,7 @@ section.verde .cabeza p{color:#B9D4BF}
         </div>
 
         <div class="precio-caja">
-          <div class="precio-fila">
+          <div class="precio-fila" role="status" aria-live="polite" aria-atomic="true">
             <span class="precio" id="p-precio">$17.000</span>
             <s class="tachado" id="p-tachado" hidden>$0</s>
             <span class="etiqueta-ahorro" id="p-ahorro" hidden>—</span>
@@ -327,7 +340,7 @@ section.verde .cabeza p{color:#B9D4BF}
               data-n="1" data-precio="17000"
               data-url="https://barber.com.co/product/bilgled-depurador-hepatico-con-cascara-sagrada-boldo-y-ruibarbo/">
               <span class="marca-radio" aria-hidden="true"><i></i></span>
-              <span><span class="qty">1 frasco</span><span class="sub">120 mL · para probarlo</span></span>
+              <span><span class="qty">1 frasco</span><span class="sub">120&nbsp;mL · para probarlo</span></span>
               <span class="val">$17.000</span>
             </button>
             <button type="button" class="opcion" role="radio" aria-checked="false"
@@ -472,7 +485,7 @@ section.verde .cabeza p{color:#B9D4BF}
           </ul>
         </div>
         <dl class="ficha-tecnica">
-          <div><dt>Presentación</dt><dd>Jarabe, 120 mL</dd></div>
+          <div><dt>Presentación</dt><dd>Jarabe, 120&nbsp;mL</dd></div>
           <div><dt>Dosis</dt><dd>1 cucharada (5 mL) al día</dd></div>
           <div><dt>Edad</dt><dd>Desde 12 años</dd></div>
           <div><dt>Condición de venta</dt><dd>Venta libre</dd></div>
@@ -497,7 +510,7 @@ section.verde .cabeza p{color:#B9D4BF}
         </details>
         <details>
           <summary>¿Cuánto me dura un frasco?</summary>
-          <div class="cuerpo"><p>Son 120 mL y la toma es de 5 mL, así que salen unas 24 tomas. Como se usa por tramos cortos, un frasco alcanza para varias veces.</p></div>
+          <div class="cuerpo"><p>Son 120&nbsp;mL y la toma es de 5 mL, así que salen unas 24 tomas. Como se usa por tramos cortos, un frasco alcanza para varias veces.</p></div>
         </details>
         <details>
           <summary>¿Lo puedo tomar con otro medicamento?</summary>
@@ -519,7 +532,7 @@ section.verde .cabeza p{color:#B9D4BF}
   <section class="humo" id="comprar">
     <div class="envoltura cierre">
       <div>
-        <h2 style="font-size:clamp(28px,6.5vw,38px)">Bilgled, 120 mL</h2>
+        <h2 style="font-size:clamp(28px,6.5vw,38px)">Bilgled, 120&nbsp;mL</h2>
         <p style="color:var(--tinta-2); margin-top:10px; max-width:42ch">Cáscara sagrada, boldo y ruibarbo. Una cucharada al día, por tramos cortos.</p>
         <p class="precio" id="c-precio" style="margin-top:16px">$17.000</p>
       </div>
@@ -535,11 +548,11 @@ section.verde .cabeza p{color:#B9D4BF}
   <div class="envoltura">
     <div class="cols">
       <div>
-        <span class="logo">BARBER<small>Siempre lo mejor, siempre natural</small></span>
+        <span class="logo" translate="no">BARBER<small>Siempre lo mejor, siempre natural</small></span>
         <p style="margin-top:14px; font-size:13.5px; max-width:38ch">Bilgled es un producto de un laboratorio aliado, distribuido por Barber. Se compra en barber.com.co.</p>
       </div>
       <div>
-        <h4>Información legal</h4>
+        <h2 class="titulo-pie">Información legal</h2>
         <ul>
           <li>Producto fitoterapéutico de uso tradicional (PFT)</li>
           <li>No exceder su consumo</li>
@@ -571,7 +584,7 @@ section.verde .cabeza p{color:#B9D4BF}
   var minis = Array.prototype.slice.call(document.querySelectorAll(".mini"));
   minis.forEach(function(m){
     m.addEventListener("click", function(){
-      minis.forEach(function(o){ o.setAttribute("aria-current", String(o === m)); });
+      minis.forEach(function(o){ o.setAttribute("aria-pressed", String(o === m)); });
       grande.src = m.dataset.src;
       grande.alt = m.getAttribute("aria-label") || "";
       grande.classList.toggle("llena", m.dataset.llena === "1");
